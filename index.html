@@ -21,14 +21,15 @@
                 left: 83.71%;
                 top: 43.94%;
                 ">
-            <div class="box-text">
-                <div class="box-title">Supply Air System (SAS)</div>
-                <div class="box-info">
-                    Plug and play
-                    <br>
-                    Typically 3.5 to 6.5MW design block
+                <div class="box-text">
+                    <div class="box-title">Supply Air System (SAS)</div>
+                    <div class="box-info">
+                        Plug and play
+                        <br>
+                        Typically 3.5 to 6.5MW design block
+                    </div>
                 </div>
-            </div>
+                <div class="arrow"></div>
             </div>
         </div>
         <script src="jquery-3.4.1.min.js"></script>
@@ -40,11 +41,11 @@
                 let img = $('.interactive-image')
                 let leftMargin = "-"+ (pointbox.width() + 0.06 * img.width()) +"px";
                 let topMargin =  "-"+ parseFloat(pointbox.height()/1.2-50) +"px"
-
+                let arrow = $('.arrow')
 
                 pointbox.css('margin-left',leftMargin)
                 pointbox.css('margin-top',topMargin)
-
+                arrow.css('margin-left', pointbox.width())
             }
 
             $(repositionBoxRight)

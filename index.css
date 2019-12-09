@@ -93,18 +93,6 @@ body{
 }
 
 
-@media screen and (max-width: 580px) {
-    .pop-up-box {
-        top: 25px!important;
-        margin-top: 0!important;
-        z-index: 112;
-        left: 0!important;
-        right: 0!important;
-        margin-left: auto!important;
-        margin-right: auto!important;
-    }
-}
-
 
 
 @keyframes fadeIn {
@@ -174,3 +162,29 @@ body{
     }
   }
 
+
+  .arrow {
+    width: 0;
+	height: 0;
+	border-top: 15px solid transparent;
+	border-left: 25px solid white;
+    border-bottom: 15px solid transparent;
+    position: absolute;
+    top: 40%;
+  }
+
+  @media screen and (max-width: 580px) {
+      .pop-up-box {
+          top: 25px!important;
+          margin-top: 0!important;
+          z-index: 112;
+          left: 0!important;
+          right: 0!important;
+          margin-left: auto!important;
+          margin-right: auto!important;
+      }
+
+      .arrow {
+          display: none;
+      }
+  }
