@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Interactive-img</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="stylesheet" href="https://use.typekit.net/cwn5dvh.css">
+    </head>
+    <body>
+        <div class="interactive-image-wrapper">
+            <img class="interactive-image" src="Screen Shot 2019-12-06 at 3.29.07 PM (1).png">
+            <div class="image-point pulse"
+            style="left: 81.71%;
+            top: 43.94%;
+            display: block;">
+                <div class="image-point-inner">
+                    <div class="inner-point-circle"></div>
+                </div>
+            </div>
+            <div class="pop-up-box" style="
+                left: 83.71%;
+                top: 43.94%;
+                ">
+            <div class="box-text">
+                <div class="box-title">Supply Air System (SAS)</div>
+                <div class="box-info">
+                    Plug and play
+                    <br>
+                    Typically 3.5 to 6.5MW design block
+                </div>
+            </div>
+            </div>
+        </div>
+        <script src="jquery-3.4.1.min.js"></script>
+
+        <script>
+
+            function repositionBoxRight() {
+                let pointbox = $('.pop-up-box')
+                let img = $('.interactive-image')
+                let leftMargin = "-"+ (pointbox.width() + 0.06 * img.width()) +"px";
+                let topMargin =  "-"+ parseFloat(pointbox.height()/1.2-50) +"px"
+
+
+                pointbox.css('margin-left',leftMargin)
+                pointbox.css('margin-top',topMargin)
+
+            }
+
+            $(repositionBoxRight)
+            $(window).resize(function(){
+
+                repositionBoxRight()
+            });
+
+            $(".image-point").hover(function() {
+                $('.pop-up-box').removeClass('fadeOut')
+
+                $('.pop-up-box').addClass('fadeIn')
+                $('.pop-up-box').css('display','block')
+
+            }, 
+            function() {
+                $('.pop-up-box').removeClass('fadeIn')
+                $('.pop-up-box').addClass('fadeOut')
+            
+            }
+            )
+        </script>
+    </body>
+</html>
