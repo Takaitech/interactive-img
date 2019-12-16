@@ -1,72 +1,468 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Interactive-img</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="index.css">
-        <link rel="stylesheet" href="https://use.typekit.net/cwn5dvh.css">
-    </head>
-    <body>
-        <div class="interactive-image-wrapper">
-            <img class="interactive-image" src="Screen Shot 2019-12-06 at 3.29.07 PM (1).png">
-            <div class="image-point pulse"
-            style="left: 81.71%;
-            top: 43.94%;
-            display: block;">
-                <div class="image-point-inner">
-                    <div class="inner-point-circle"></div>
-                </div>
-            </div>
-            <div class="pop-up-box" style="
-                left: 83.71%;
-                top: 43.94%;
-                ">
-                <div class="box-text">
-                    <div class="box-title">Supply Air System (SAS)</div>
-                    <div class="box-info">
-                        Plug and play
-                        <br>
-                        Typically 3.5 to 6.5MW design block
-                    </div>
-                </div>
-                <div class="arrow"></div>
-            </div>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.typekit.net/cwn5dvh.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="interactive-image-wrapper">
+      <!-- CHANGE IMAGE- -->
+
+      <!--  Change image src to the new image file name or the URL link to image.
+
+      Examples:
+        <img class="interactive-image" src="(insert-new-image-file-name.jpg)" />
+        <img class="interactive-image" src="(insert-new-image-URL.jpg)" />
+      -->
+      <img class="interactive-image" src="Mariposa_scene_final.jpg" />
+
+
+
+      <!-- MOVE CLICKABLE IMAGE POINTS  -->
+
+      <!-- Change left and top values to X and Y coordinates of image for desired position 
+        -must be percentage values
+        -must change for both image-point and pop-up-box (see below)
+        
+        Example: 
+        
+          <div
+            class="image-point right pulse"
+            style="
+              left: (Insert new X coordinate)%;
+              top: (Insert new Y coordinate)%;"
+          >
+          <div
+            class="pop-up-box"
+            style="
+              left: (Insert same X coordinate as image point)%;
+              top: (Insert same Y coordinate as image point)%;"
+          >
+      -->
+
+
+      <!--==========================LEFT===========================-->
+      <!-- Change left and top coordinates here for LEFT image point-->
+      <div
+        id="LEFT-point"
+        class="image-point pulse"
+        style="
+          left: 30%;
+          top: 68%;"
+      >
+      </div>
+      <!-- Change left and top coordinates here for LEFT pop up box -->
+      <div
+        id="LEFT-box"
+        class="pop-up-box"
+        style="
+          left: 30%;
+          top: 68.8%;"
+      >
+      <div class="box-text">
+          <img class="close-box" src='x-icon.png'>
+          <div class="box-title">Tracker Controller Assembly (TC)</div>
+          <div class="box-info">
+            One per subarray
+            <br />
+            Plug and Play
+            <br />
+            Provides backup air storage
+            <br />
+            One per 300-450kW
+          </div>
         </div>
-        <script src="jquery-3.4.1.min.js"></script>
+        <div class="LEFT-arrow"></div>
+      </div>
 
-        <script>
+      <!--============================================================-->
 
-            function repositionBoxRight() {
-                let pointbox = $('.pop-up-box')
-                let img = $('.interactive-image')
-                let leftMargin = "-"+ (pointbox.width() + 0.06 * img.width()) +"px";
-                let topMargin =  "-"+ parseFloat(pointbox.height()/1.2-50) +"px"
-                let arrow = $('.arrow')
 
-                pointbox.css('margin-left',leftMargin)
-                pointbox.css('margin-top',topMargin)
-                arrow.css('margin-left', pointbox.width())
-            }
 
-            $(repositionBoxRight)
-            $(window).resize(function(){
+      <!--==========================CENTER============================-->
+      <!-- Change left and top coordinates here for CENTER image point-->
+      <div
+        id="CENTER-point"
+        class="image-point pulse"
+        style="
+          left: 51.5%;
+          top: 50%;"
+      >
+      </div>
+      <!-- Change left and top coordinates here for CENTER pop up box -->
+      <div
+        id="CENTER-box"
+        class="pop-up-box"
+        style="
+          left: 51.5%;
+          top: 50%;"
+      >
+        <div class="box-text">
+          <img class="close-box" src='x-icon.png'>
+          <div class="box-title">Tracker Rows</div>
+          <div class="box-info">
+            No torque tube
+            <br />
+            Short, uniform posts
+            <br />
+            Clean wire management
+          </div>
+        </div>
+        <div class="CENTER-arrow"></div>
+      </div>
+      <!--============================================================-->
 
-                repositionBoxRight()
-            });
 
-            $(".image-point").hover(function() {
-                $('.pop-up-box').removeClass('fadeOut')
+      
+      <!--==========================RIGHT============================-->
+      <!-- Change left and top coordinates here for RIGHT image point -->
+      <div
+        id="RIGHT-point"
+        class="image-point pulse"
+        style="
+          left: 82%;
+          top: 43%;"
+      >
+      </div>
+      <!-- Change left and top coordinates here for RIGHT pop up box -->
+      <div 
+        id="RIGHT-box"
+        class="pop-up-box"
+        style="
+          left: 82%;
+          top: 43%;"
+      >
+        <div class="box-text">
+          <img class="close-box" src='x-icon.png'>
+          <div class="box-title">Supply Air System (SAS)</div>
+          <div class="box-info">
+            Plug and play
+            <br />
+            Typically 3.5 to 6.5MW design block
+          </div>
+        </div>
+        <div class="RIGHT-arrow"></div>
+      </div>
+      <!--============================================================-->
+    </div>
+    <script>
 
-                $('.pop-up-box').addClass('fadeIn')
-                $('.pop-up-box').css('display','block')
 
-            }, 
-            function() {
-                $('.pop-up-box').removeClass('fadeIn')
-                $('.pop-up-box').addClass('fadeOut')
-            
-            }
-            )
-        </script>
-    </body>
+      function repositionBoxLeft() {
+        let box = $("#LEFT-box");
+        let img = $(".interactive-image");
+        let arrow = $(".LEFT-arrow");
+        let leftMargin = box.width() * 0.2 + arrow.width() + "px";
+        let topMargin = "-" + parseFloat(box.height() / 1.35 - 50) + "px";
+
+        box.css("margin-left", leftMargin);
+        box.css("margin-top", topMargin);
+        arrow.css("margin-left", "-24px");
+      }
+
+
+      function repositionBoxCenter() {
+        let box = $("#CENTER-box");
+        let img = $(".interactive-image");
+        let arrow = $(".CENTER-arrow");
+        let leftMargin = box.width() * 0.23 + arrow.width() + "px";
+        let topMargin = "-" + parseFloat(box.height() / 1.27 - 50) + "px";
+
+        box.css("margin-left", leftMargin);
+        box.css("margin-top", topMargin);
+        arrow.css("margin-left", "-24px");
+      }
+
+      function repositionBoxRight() {
+        let box = $("#RIGHT-box");
+        let img = $(".interactive-image");
+        let leftMargin = "-" + (box.width() + 0.043 * img.width()) + "px";
+        let topMargin = "-" + parseFloat(box.height() / 1.2 - 50) + "px";
+        let arrow = $(".RIGHT-arrow");
+
+        box.css("margin-left", leftMargin);
+        box.css("margin-top", topMargin);
+        arrow.css("margin-left", box.width() - 1);
+      }
+
+      $(repositionBoxLeft);
+      $(repositionBoxCenter);
+      $(repositionBoxRight);
+      $(window).resize(function() {
+        repositionBoxRight();
+        repositionBoxCenter();
+        repositionBoxLeft();
+      });
+
+      
+      $(".image-point").hover(
+        function() {
+          let orientation;
+
+          if ($(this).attr("id") === 'LEFT-point') {
+            orientation = "LEFT";
+          } else if ($(this).attr("id") === 'CENTER-point') {
+            orientation = "CENTER";
+          } else if ($(this).attr("id") === 'RIGHT-point') {
+            orientation = "RIGHT";
+          }
+
+          $(`#${orientation}-box`).removeClass("fadeOut");
+          $(`#${orientation}-box`).addClass("fadeIn");
+          $(`#${orientation}-box`).css("display", "block");
+        },
+        function() {
+          let orientation;
+
+          if ($(this).attr("id") === 'LEFT-point') {
+            orientation = "LEFT";
+          } else if ($(this).attr("id") === 'CENTER-point') {
+            orientation = "CENTER";
+          } else if ($(this).attr("id") === 'RIGHT-point') {
+            orientation = "RIGHT";
+          }
+
+          $(`#${orientation}-box`).removeClass("fadeIn");
+          $(`#${orientation}-box`).addClass("fadeOut");
+        }
+      );
+    </script>
+    <style>
+      body {
+        font-family: europa;
+        font-weight: 300;
+        overflow: hidden;
+      }
+
+      .interactive-image-wrapper {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        width: 100% !important;
+      }
+
+      .interactive-image {
+        width:  100% !important;
+        padding: 0 !important;
+      }
+
+      .image-point {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        border-radius: 100%;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        cursor: pointer;
+        z-index: 1;
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+
+      .pop-up-box {
+        box-sizing: border-box;
+        font-weight: 200;
+        font-style: normal;
+        background-color: white;
+        margin-left: 3%;
+        margin-top: -10%;
+        position: absolute;
+        min-width: 275px;
+        max-width: 315px;
+        width: 30%;
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%);
+        display: block;
+        z-index: 2;
+        box-shadow: 0 0 7px 0 rgba(0,0,0,.4);
+        min-height: 105px;
+        min-width: 230px;
+        max-width: 340px;
+      }
+
+      .close-box {
+        height: 25px;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        display: none;
+      }
+
+      .LEFT-arrow {
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-right: 25px solid white;
+        border-bottom: 15px solid transparent;
+        position: absolute;
+        top: 40.5%;
+      }
+
+      .CENTER-arrow {
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-right: 25px solid white;
+        border-bottom: 15px solid transparent;
+        position: absolute;
+        top: 40%;
+      }
+
+      .RIGHT-arrow {
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-left: 25px solid white;
+        border-bottom: 15px solid transparent;
+        position: absolute;
+        top: 40%;
+      }
+
+      .box-text {
+        padding: 24px;
+        padding-top: 15px;
+        padding-bottom: 24px;
+        display: block;
+        pointer-events: none;
+
+      }
+
+      .box-title {
+        font-size: 18px;
+        margin-bottom: 14px;
+        max-width: 85%;
+        pointer-events: none;
+
+      }
+
+      .box-info {
+        width: 100%;
+        font-size: 11px;
+        line-height: 18px;
+        color: #8e8f8f;
+        pointer-events: none;
+
+      }
+
+      .fadeIn {
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+        -webkit-animation-duration: 0.5s;
+        animation-duration: 0.5s;
+        -webkit-animation-fill-mode: forwards; /* Chrome 16+, Safari 4+ */
+        -moz-animation-fill-mode: forwards; /* FF 5+ */
+        -o-animation-fill-mode: forwards; /* Not implemented yet */
+        -ms-animation-fill-mode: forwards; /* IE 10+ */
+        animation-fill-mode: forwards;
+      }
+
+      .fadeOut {
+        -webkit-animation-name: fadeOut;
+        animation-name: fadeOut;
+        -webkit-animation-duration: 0.3s;
+        animation-duration: 0.3s;
+        animation-fill-mode: both;
+        -webkit-animation-fill-mode: forwards; /* Chrome 16+, Safari 4+ */
+        -moz-animation-fill-mode: forwards; /* FF 5+ */
+        -o-animation-fill-mode: forwards; /* Not implemented yet */
+        -ms-animation-fill-mode: forwards; /* IE 10+ */
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+          display: block;
+          pointer-events: none;
+        }
+        99% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+        100% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+          pointer-events: none;
+        }
+      }
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+        99% {          
+          opacity: 0;
+          -webkit-transform: translateY(150%);
+          transform: translateY(150%);
+        }
+        100% {
+          opacity: 0;
+          -webkit-transform: translateY(300%);
+          transform: translateY(300%);
+          display: none;
+        }
+      }
+
+      .pulse {
+        animation: pulse 3s infinite;
+      }
+      .pulse:hover {
+        animation: none;
+      }
+
+      @keyframes pulse {
+        0% {
+          -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+        }
+        40% {
+          -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+        }
+        50% {
+          -moz-box-shadow: rgba(255, 255, 255, 0.5);
+          box-shadow: rgba(255, 255, 255, 0.5);
+        }
+        70% {
+          -moz-box-shadow: 0 0 0 60px rgba(255, 255, 255, 0);
+          box-shadow: 0 0 0 60px rgba(255, 255, 255, 0);
+        }
+        100% {
+          -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+      }
+
+      @media screen and (max-width: 580px) {
+        .pop-up-box {
+          top: 10px !important;
+          margin-top: 0 !important;
+          z-index: 112;
+          left: 0 !important;
+          right: 0 !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+
+        .LEFT-arrow,
+        .CENTER-arrow,
+        .RIGHT-arrow {
+          display: none;
+        }
+        .close-box {
+          display: block;
+        }
+      }
+    </style>
+  </body>
 </html>
