@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="interactive-image-wrapper">
-      <!-- CHANGE IMAGE- -->
+      <!-- CHANGE IMAGE -->
 
       <!--  Change image src to the new image file name or the URL link to image.
 
@@ -15,16 +15,16 @@
         <img class="interactive-image" src="(insert-new-image-file-name.jpg)" />
         <img class="interactive-image" src="(insert-new-image-URL.jpg)" />
       -->
-      <img class="interactive-image" src="Mariposa_scene_final.jpg" />
+      <img class="interactive-image" src="files/Mariposa_scene_final.jpg" />
 
 
 
-      <!-- MOVE CLICKABLE IMAGE POINTS  -->
+      <!-- MOVE IMAGE POINTS  -->
 
       <!-- Change left and top values to X and Y coordinates of image for desired position 
-        -must be percentage values
-        -must change for both image-point and pop-up-box (see below)
-        
+        -Must be percentage values
+        -Must change to same percentage on both image-point and pop-up-box (see below)
+        -Keep right and left point on their current sides (center can be placed anywhere around the center of image)
         Example: 
         
           <div
@@ -49,7 +49,8 @@
         class="image-point pulse"
         style="
           left: 30%;
-          top: 68%;"
+          top: 68%;
+        "
       >
       </div>
       <!-- Change left and top coordinates here for LEFT pop up box -->
@@ -58,11 +59,15 @@
         class="pop-up-box"
         style="
           left: 30%;
-          top: 68.8%;"
+          top: 68.8%;
+        "
       >
+      <!-- Change LEFT pop up box text here-->
       <div class="box-text">
-          <img class="close-box" src='x-icon.png'>
+          <img class="close-box" src='files/x-icon.png'>
+          <!-- Title -->
           <div class="box-title">Tracker Controller Assembly (TC)</div>
+          <!-- Description -->
           <div class="box-info">
             One per subarray
             <br />
@@ -87,7 +92,8 @@
         class="image-point pulse"
         style="
           left: 51.5%;
-          top: 50%;"
+          top: 50%;
+        "
       >
       </div>
       <!-- Change left and top coordinates here for CENTER pop up box -->
@@ -96,11 +102,15 @@
         class="pop-up-box"
         style="
           left: 51.5%;
-          top: 50%;"
+          top: 50%;
+        "
       >
+      <!-- Change CENTER pop up box text here-->
         <div class="box-text">
-          <img class="close-box" src='x-icon.png'>
+          <img class="close-box" src='files/x-icon.png'>
+          <!-- Title -->
           <div class="box-title">Tracker Rows</div>
+          <!-- Description -->
           <div class="box-info">
             No torque tube
             <br />
@@ -122,7 +132,8 @@
         class="image-point pulse"
         style="
           left: 82%;
-          top: 43%;"
+          top: 43%;
+        "
       >
       </div>
       <!-- Change left and top coordinates here for RIGHT pop up box -->
@@ -131,11 +142,15 @@
         class="pop-up-box"
         style="
           left: 82%;
-          top: 43%;"
+          top: 43%;
+        "
       >
+      <!-- Change RIGHT pop up box text here -->
         <div class="box-text">
-          <img class="close-box" src='x-icon.png'>
+          <img class="close-box" src='files/x-icon.png'>
+          <!-- Title -->
           <div class="box-title">Supply Air System (SAS)</div>
+          <!-- Description -->
           <div class="box-info">
             Plug and play
             <br />
@@ -148,7 +163,6 @@
     </div>
     <script>
 
-
       function repositionBoxLeft() {
         let box = $("#LEFT-box");
         let img = $(".interactive-image");
@@ -160,7 +174,6 @@
         box.css("margin-top", topMargin);
         arrow.css("margin-left", "-24px");
       }
-
 
       function repositionBoxCenter() {
         let box = $("#CENTER-box");
@@ -186,16 +199,6 @@
         arrow.css("margin-left", box.width() - 1);
       }
 
-      $(repositionBoxLeft);
-      $(repositionBoxCenter);
-      $(repositionBoxRight);
-      $(window).resize(function() {
-        repositionBoxRight();
-        repositionBoxCenter();
-        repositionBoxLeft();
-      });
-
-      
       $(".image-point").hover(
         function() {
           let orientation;
@@ -212,6 +215,7 @@
           $(`#${orientation}-box`).addClass("fadeIn");
           $(`#${orientation}-box`).css("display", "block");
         },
+
         function() {
           let orientation;
 
@@ -227,6 +231,17 @@
           $(`#${orientation}-box`).addClass("fadeOut");
         }
       );
+
+    
+      $(repositionBoxLeft);
+      $(repositionBoxCenter);
+      $(repositionBoxRight);
+      $(window).resize(function() {
+        repositionBoxRight();
+        repositionBoxCenter();
+        repositionBoxLeft();
+      });
+
     </script>
     <style>
       body {
@@ -300,6 +315,7 @@
         border-bottom: 15px solid transparent;
         position: absolute;
         top: 40.5%;
+
       }
 
       .CENTER-arrow {
@@ -373,6 +389,7 @@
         animation-fill-mode: forwards;
       }
 
+
       @keyframes fadeIn {
         0% {
           opacity: 0;
@@ -434,8 +451,8 @@
           box-shadow: rgba(255, 255, 255, 0.5);
         }
         70% {
-          -moz-box-shadow: 0 0 0 60px rgba(255, 255, 255, 0);
-          box-shadow: 0 0 0 60px rgba(255, 255, 255, 0);
+          -moz-box-shadow: 0 0 0 44px rgba(255, 255, 255, 0);
+          box-shadow: 0 0 0 44px rgba(255, 255, 255, 0);
         }
         100% {
           -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
@@ -443,7 +460,7 @@
         }
       }
 
-      @media screen and (max-width: 580px) {
+      @media screen and (max-width: 768px) {
         .pop-up-box {
           top: 10px !important;
           margin-top: 0 !important;
@@ -462,6 +479,28 @@
         .close-box {
           display: block;
         }
+        @keyframes pulse {
+        0% {
+          -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+        }
+        40% {
+          -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+        }
+        50% {
+          -moz-box-shadow: rgba(255, 255, 255, 0.5);
+          box-shadow: rgba(255, 255, 255, 0.5);
+        }
+        70% {
+          -moz-box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+          box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+        }
+        100% {
+          -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+      }
       }
     </style>
   </body>
